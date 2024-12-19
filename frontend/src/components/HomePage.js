@@ -101,17 +101,17 @@ const Homepage = () => {
       try {
 
         const status = await axios.get("http://localhost:3000/health",{});
-        console.log('Health check successful',status.status);
+        // console.log('Health check successful',status.status);
         if(status.status === 200) {
           await signInWithPopup(auth, provider);
           const token = await auth.currentUser.getIdToken(true);
-          console.log(token);
+          // console.log(token);
           const response = await axios.post("http://localhost:3000/login",{}, {
             headers: {
               Authorization: `Bearer ${token}`, // Set the Authorization header
             },
           });
-          console.log('Login Successful',response.data.success);
+          // console.log('Login Successful',response.data.success);
         }
         else{
           console.error('Health check failed',status.status);

@@ -1,20 +1,23 @@
 import React from "react";
 import { useRef, useState, useEffect } from "react";
 import GameBoard from "./components/GameBoard";
-import { Box } from "@mui/material";
+import { Modal, Box, Typography } from "@mui/material";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./components/firebaseConfig";
 import Button from "@mui/material/Button";
 import SignIn from "./components/HomePage";
 import Layout from "./components/Layout";
 import axios from "axios";
+import WarningAmberIcon from "@mui/icons-material/WarningAmber";
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   Navigate,
 } from "react-router-dom";
-import { getAuth } from 'firebase/auth';
+import { getAuth } from "firebase/auth";
+import "./App.css";
+import Footer from "./components/Footer";
 const DECIMAL_MULTIPLIER = 10000;
 const ballRadius = 7;
 
@@ -50,24 +53,27 @@ function App() {
     return () => unsubscribe();
   }, []);
 
-
   useEffect(() => {
     const fetchBalance = async () => {
       try {
-        console.log("Fetching balance")
+        // console.log("Fetching balance");
         const user = getAuth().currentUser;
         if (user) {
           const token = await user.getIdToken(true);
-          console.log(token);
-          const response = await axios.post('http://localhost:3000/api/balance', {}, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
+          // console.log(token);
+          const response = await axios.post(
+            "http://localhost:3000/api/balance",
+            {},
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
           setBalance(response.data.balance);
-          console.log(response.data.balance);
+          // console.log(response.data.balance);
         } else {
-          console.log('No user signed in');
+          // console.log("No user signed in");
         }
       } catch (err) {
         console.error(err);
@@ -93,36 +99,34 @@ function App() {
     try {
       const user = getAuth().currentUser;
       const token = await user.getIdToken(true);
-      console.log(token);
-      
+      // console.log(token);
+
       const payload = {
         betAmount: betAmount, // Replace with actual bet amount
         risk: risk, // Replace with "low", "medium", or "high" based on your UI
-        currentBalance: balance, 
+        currentBalance: balance,
       };
-      console.log(payload);
-      setBalance((prevBalance) => Math.max((prevBalance - betAmount),0));
+      // console.log(payload);
+      setBalance((prevBalance) => Math.max(prevBalance - betAmount, 0));
       // Make a request to the backend to send x and multiplier
       const response = await axios.post(
         "http://localhost:3000/api/getBallPosition",
-        payload, 
+        payload,
         {
           headers: {
             Authorization: `Bearer ${token}`, // Set the Authorization header
           },
         }
       );
-      const { 
-        sinkNumber, 
-        x: newX, 
-        multiplier: newMultiplier, 
-        returnAmount, 
+      const {
+        sinkNumber,
+        x: newX,
+        multiplier: newMultiplier,
+        returnAmount,
         betAmt,
-        currentBalance ,
+        currentBalance,
         newBalance,
-
       } = response.data;
-
 
       const newBall = {
         x: pad(newX),
@@ -134,32 +138,32 @@ function App() {
         vx: 0,
         vy: 0,
         multiplier: newMultiplier,
-        returnAmount:returnAmount,
-        betAmt:betAmt,
-        currentBalance : currentBalance ,
-        newBalance : newBalance,
-      
+        returnAmount: returnAmount,
+        betAmt: betAmt,
+        currentBalance: currentBalance,
+        newBalance: newBalance,
       };
 
       balls.current.push(newBall);
       setTotalBalls([...balls.current]);
-      console.log("Ball added:", newBall);
+      // console.log("Ball added:", newBall);
     } catch (error) {
       console.error("Error adding ball:", error);
     }
   };
   // Define the onClick handler
   const handleDropClick = () => {
-    console.log("Button clicked!");
+    // console.log("Button clicked!");
 
-    if(balance<=0 || balance<betAmount){
-      alert("Insufficient funds. Please top up your balance.");
+    if (balance <= 0 || balance < betAmount) {
+      // alert("Insufficient funds. Please top up your balance.");
+
+      setShowModal(true); // Show the modal instead of the alert
+
       return;
-    }else{
+    } else {
       addBall();
     }
-    
-   
   };
 
   // Store the button in a variable with the onClick handler
@@ -187,22 +191,98 @@ function App() {
     </Button>
   );
 
+  const [showModal, setShowModal] = useState(false);
+
+  const closeModal = () => {
+    setShowModal(false); // Close the modal
+  };
+
   return (
-    <>
-      <Router>
-      <Routes>
-            <Route
-              path="/"
-              element={user ? <Navigate to="/game" /> : <SignIn />}
+    <div className="App">
+      <Modal
+        open={showModal}
+        onClose={closeModal}
+        aria-labelledby="insufficient-funds-title"
+        aria-describedby="insufficient-funds-description"
+        sx={{paddingX:3}}
+      >
+        <Box
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: 400,
+            bgcolor: "background.paper",
+            boxShadow: 24,
+            p: 4,
+            borderRadius: 3,
+            textAlign: "center",
+          }}
+        >
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              mb: 2,
+            }}
+          >
+            <WarningAmberIcon
+              color="warning"
+              sx={{ fontSize: 50, marginRight: 1 }}
             />
-            <Route element={<Layout userInfo={userInfo} balance={balance} user={user} setBalance={setBalance}/>}>
-              {" "}
-              {/* Wrap these routes with Layout */}
-              <Route
-                path="/game"
-                element={
-                  user ? (
-                    <Box sx={{ background: "rgb(31,45,55)", height: "auto" }}>
+            <Typography
+              id="insufficient-funds-title"
+              variant="h5"
+              component="h2"
+              fontWeight="bold"
+            >
+              Insufficient Balance
+            </Typography>
+          </Box>
+          <Typography id="insufficient-funds-description" sx={{ mb: 3 }}>
+            You do not have enough balance to proceed. Please top up your
+            account to continue.
+          </Typography>
+          <Button
+            variant="contained"
+            color="warning"
+            onClick={closeModal}
+            sx={{
+              textTransform: "none",
+              fontWeight: "bold",
+              width: "100%",
+              padding: 1,
+            }}
+          >
+            Close
+          </Button>
+        </Box>
+      </Modal>
+      <Router>
+        <Routes>
+          <Route
+            path="/"
+            element={user ? <Navigate to="/game" /> : <SignIn />}
+          />
+          <Route
+            element={
+              <Layout
+                userInfo={userInfo}
+                balance={balance}
+                user={user}
+                setBalance={setBalance}
+              />
+            }
+          >
+            {" "}
+            {/* Wrap these routes with Layout */}
+            <Route
+              path="/game"
+              element={
+                user ? (
+                  <Box sx={{ background: "rgb(31,45,55)" }}>
                     <GameBoard
                       button={buttonElement}
                       balls={balls}
@@ -217,29 +297,18 @@ function App() {
                       patterns={patterns}
                       totalballs={totalballs}
                       setTotalBalls={setTotalBalls}
-
-                    />
+                    />{" "}
+                    <Footer />
                   </Box>
-                  ) : (
-                    <Navigate to="/" />
-                  )
-                }
-              />
-              {/* <Route
-                path="/qr-code"
-                element={
-                  user ? (
-                    <ManageQRCode userInfo={userInfo} />
-                  ) : (
-                    <Navigate to="/" />
-                  )
-                }
-              /> */}
-              {/* <Route path="/account-settings" element={user ? <AccountSettings /> : <Navigate to="/" />} /> */}
-            </Route>
-          </Routes>
+                ) : (
+                  <Navigate to="/" />
+                )
+              }
+            />
+          </Route>
+        </Routes>
       </Router>
-    </>
+    </div>
   );
 }
 

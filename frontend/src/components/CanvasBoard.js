@@ -1,9 +1,6 @@
 import React from 'react'
 import { Box } from '@mui/material';
-import Canvas from './Canvas';
 import PlinkoGame from './PlinkoGame';
-import Simulate from './Simulate';
-import Sim2 from './Sim2';
 
 function CanvasBoard({balls,sinkPattern,setBalance,risk,totalballs,setTotalBalls}) {
   return (
@@ -21,16 +18,15 @@ function CanvasBoard({balls,sinkPattern,setBalance,risk,totalballs,setTotalBalls
       paddingX:{
         xs: 0,
         sm: 2,
-        md: 12,
+        md: 8,
       },
       backgroundColor: "rgb(17, 24, 39)",
       borderRadius: 2,
     }}
   >
-    {/* <Box sx={{width:50}}></Box> */}
+
     <PlinkoGame balls={balls} sinkPattern={sinkPattern} setBalance={setBalance} risk={risk} totalballs={totalballs} setTotalBalls={setTotalBalls} />
-    {/* <Simulate/> */}
-    {/* <Sim2/> */}
+
   </Box>
   )
 }

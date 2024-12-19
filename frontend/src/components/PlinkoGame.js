@@ -5,7 +5,7 @@ const DECIMAL_MULTIPLIER = 10000;
 const WIDTH = 600;
 const HEIGHT = 600;
 const obstacleRadius = 4;
-const gravity = 0.01 * DECIMAL_MULTIPLIER;
+const gravity = 0.2 * DECIMAL_MULTIPLIER;
 const horizontalFriction = 0.4;
 const verticalFriction = 0.8;
 
@@ -49,22 +49,22 @@ const PlinkoGame = ({
       const x = WIDTH / 2 + (i - 7.5) * sinkWidth + obstacleRadius;
       const y = HEIGHT - 45;
       if (i < centerIndex) {
-        // Gradual transition from orange to yellow for left sinks
+        // Gradual transition from red to yellow for left sinks
         const t = i / centerIndex;
-        red = Math.round(255 * (1 - t) + 255 * t); // Transition red (orange to yellow)
-        green = Math.round(120 * (1 - t) + 255 * t); // Transition green (orange to yellow)
-        blue = 0; // Both orange and yellow have no blue component
+        red = Math.round(255); // Red stays full intensity
+        green = Math.round(20 + (235 * t)); // Transition green from low (20) to high (255)
+        blue = 0; // No blue component
       } else if (i === centerIndex) {
-        // Center sinks are yellow
+        // Center sink is pure yellow
         red = 255;
         green = 255;
         blue = 0;
       } else {
-        // Gradual transition from yellow to orange for right sinks
+        // Gradual transition from yellow to red for right sinks
         const t = (i - centerIndex) / (NUM_SINKS - centerIndex - 1);
-        red = Math.round(255 * (1 - t) + 255 * t); // Transition red (yellow to orange)
-        green = Math.round(255 * (1 - t) + 120 * t); // Transition green (yellow to orange)
-        blue = 0; // Both orange and yellow have no blue component
+        red = Math.round(255); // Red stays full intensity
+        green = Math.round(255 - (235 * t)); // Transition green from high (255) to low (20)
+        blue = 0; // No blue component
       }
 
       const color = `rgb(${red}, ${green}, ${blue})`;
@@ -74,7 +74,6 @@ const PlinkoGame = ({
         width: sinkWidth,
         height: sinkWidth,
         number: i + 1,
-        // sinkValue:sinkPtn[i],
         color: color,
         enlarged: false,
       });
@@ -100,9 +99,9 @@ const PlinkoGame = ({
       4
     )}, ${ball.initialY.toFixed(4)})`;
     const reachedSink = `Ball reached sink #${sinkNumber}`;
-    console.log(
-      dropPosition + ", " + reachedSink + "With Multiplier : " + ball.multiplier +"with return amount : "+ball.returnAmount+" with bet amount : "+ball.betAmt +" with new balance : "+ball.newBalance+" with current balance : "+ball.currentBalance 
-    );
+    // console.log(
+    //   dropPosition + ", " + reachedSink + "With Multiplier : " + ball.multiplier +"with return amount : "+ball.returnAmount+" with bet amount : "+ball.betAmt +" with new balance : "+ball.newBalance+" with current balance : "+ball.currentBalance 
+    // );
     setBalance(Number(ball.newBalance));
   };
 
@@ -289,7 +288,7 @@ const PlinkoGame = ({
   // Function to redraw the canvas
   const draw = () => {
     const canvas = canvasRef.current;
-    console.log("drawing", balls.current.length);
+    // console.log("drawing", balls.current.length);
     const ctx = canvas.getContext("2d");
     if(ctx==null){
       window.location.reload();

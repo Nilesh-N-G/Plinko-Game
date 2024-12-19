@@ -1,27 +1,15 @@
-const firebaseAdmin = require('firebase-admin');
-
-// Initialize Firebase Admin SDK
-const serviceAccount = require('./servicekey.json'); // Path to Firebase service account key JSON
-firebaseAdmin.initializeApp({
-  credential: firebaseAdmin.credential.cert(serviceAccount),
-});
+const admin = require('firebase-admin');
 
 const verifyToken = async (req, res, next) => {
-  const token = req.header('Authorization')?.split(' ')[1]; // Extract token
-  if (!token) {
-    console.error('No token provided');
-    return res.status(401).send('Authorization token missing');
-  }
-
+  const token = req.headers.authorization?.split(' ')[1];
+  if (!token) return res.status(401).send('Token required');
   try {
     const decodedToken = await admin.auth().verifyIdToken(token);
-    req.user = decodedToken; // Attach user to request
-    console.log(req.user);
-    next(); // Proceed to next middleware or route handler
+    req.user = decodedToken;
+    next();
   } catch (error) {
-    res.status(401).send('Unauthorized');
+    res.status(401).send('Unauthorized: Invalid token');
   }
 };
 
-
-module.exports = verifyToken;
+module.exports = { verifyToken };

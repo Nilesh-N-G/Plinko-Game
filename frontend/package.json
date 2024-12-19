@@ -15,6 +15,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.7.9",
     "d3-shape": "^3.0.0",
+    "dotenv": "^16.4.7",
     "firebase": "^11.1.0",
     "matter-js": "^0.20.0",
     "phaser": "^3.87.0",

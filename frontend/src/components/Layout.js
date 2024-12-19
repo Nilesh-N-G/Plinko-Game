@@ -6,7 +6,7 @@ import NavBar from './NavBar';
 const Layout = ({ userInfo,balance,user,setBalance }) => {
   return (
     <div>
-      <NavBar balance={balance} setBalance={setBalance}/> {/* Always render the header */}
+      <NavBar balance={balance} setBalance={setBalance} userInfo={userInfo}/> {/* Always render the header */}
       <main>
         <Outlet />  {/* The page content will be rendered here */}
       </main>

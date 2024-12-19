@@ -27,10 +27,16 @@ const BettingForm = ({button,risk,setRisk,betAmount,setBetAmount,balance ,setSin
         width: 'auto',
         height: {
             xs: 'auto', 
-            sm: '50vh', 
-            md: '70vh', 
+            sm: 'auto', 
+            md: '71vh', 
           },
-        padding: 4,
+        paddingX: 4,
+        paddingTop: {
+          xs: 1,
+          sm: 1,
+          md: 4,
+        },
+        paddingBottom:3,
         backgroundColor: "rgb(51, 65, 85)",
         borderRadius: 2,
         display: "flex",
@@ -39,7 +45,11 @@ const BettingForm = ({button,risk,setRisk,betAmount,setBetAmount,balance ,setSin
       }}
     >
       {/* Bet Amount */}
-      <Typography variant="body1" sx={{ color: "rgb(203,213,225)",textAlign:'left', fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", Segoe UI Symbol, "Noto Color Emoji"',fontSize:15,fontWeight:'normal',marginTop:3}}>
+      <Typography variant="body1" sx={{ color: "rgb(203,213,225)",textAlign:'left', fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", Segoe UI Symbol, "Noto Color Emoji"',fontSize:15,fontWeight:'normal',marginTop:{
+        xs: 1,
+        sm: 1,
+        md: 3,
+      }}}>
         Bet Amount
       </Typography>
       <Box sx={{ display: "flex", gap:0,backgroundColor:'rgb(71,85,105)',borderRadius:2,}}>
@@ -57,7 +67,7 @@ const BettingForm = ({button,risk,setRisk,betAmount,setBetAmount,balance ,setSin
           ),
         },
       }}
-      inputProps={{ min: 0 }} 
+      inputProps={{ min: 0.0001 }} 
       sx={{
         flex: 3, 
         backgroundColor: "#0F172A",
@@ -142,14 +152,14 @@ const BettingForm = ({button,risk,setRisk,betAmount,setBetAmount,balance ,setSin
   onChange={(e) => {
     // Log to verify the change
     const selectedRisk = e.target.value;
-    console.log("Selected Risk: ", selectedRisk);
+    // console.log("Selected Risk: ", selectedRisk);
 
     // Update the risk state
     setRisk(selectedRisk);
 
     // Update sinkPattern based on selected risk
     const selectedPattern = patterns[selectedRisk];
-    console.log("Selected Pattern: ", selectedPattern);
+    // console.log("Selected Pattern: ", selectedPattern);
     
     // Set the new sinkPattern
     setSinkPattern(selectedPattern);

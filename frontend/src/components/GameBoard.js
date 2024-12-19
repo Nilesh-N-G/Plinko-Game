@@ -20,7 +20,8 @@ const GameBoard = ({
   setTotalBalls,
 }) => {
   return (
-    <>
+    <><Box sx={{
+      backgroundColor: "rgb(31, 45, 55)",height:'auto'}} >
       <Box
         sx={{
           flexGrow: 1,
@@ -29,12 +30,7 @@ const GameBoard = ({
             sm: 10,
             md: 20,
           },
-          paddingTop: {
-            xs: 2,
-            sm: 5,
-            md: 8,
-          },
-          paddingBottom: 5,
+          paddingTop:3,
           paddingX:{
             sm:2,
             md:8
@@ -48,7 +44,10 @@ const GameBoard = ({
             md={4}
             sx={{
               order: { xs: 2, md: 1 },
+              height:'100%',
+              
             }}
+            
           >
             <Box
               sx={{
@@ -57,7 +56,7 @@ const GameBoard = ({
                 textAlign: "center",
                 borderRadius: 0,
                 color: "text.secondary",
-                height: "100%",
+                height: "auto",
               }}
             >
               <BettingForm
@@ -101,8 +100,13 @@ const GameBoard = ({
               />
             </Box>
           </Grid>
+  
         </Grid>
+
       </Box>
+  
+      </Box>
+
     </>
   );
 };
