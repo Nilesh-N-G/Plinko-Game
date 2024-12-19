@@ -1,6 +1,6 @@
 import express from 'express';
 const router = express.Router();
-import { sinks } from "../sinks.js"; 
+import { sinks } from "../assests/sinks.js"; 
 import UserInfo from "../models/UserInfo.js";
 const MAX_SINK_NUMBER = 15;
 const DEFAULT_PROBABILITY = 0.5;
