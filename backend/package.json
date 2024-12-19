@@ -1,0 +1,24 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "backend": "file:",
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "createsprite": "^1.1.3",
+    "express": "^4.21.2",
+    "firebase-admin": "^13.0.1",
+    "fs": "^0.0.1-security",
+    "mongoose": "^8.9.0",
+    "nodemon": "^3.1.7"
+  },
+  "type": "module"
+}

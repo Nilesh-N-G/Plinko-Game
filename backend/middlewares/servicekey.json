@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "plinkogame-3471c",
+  "private_key_id": "77793376fb4a7df12c72b5e23a0a7c706e6ad8d2",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCzvuc1acx1Acl2\nqmr4I3eAswwKZL3RokvbjPExsU06J7u4dDd6A8xHjIQAtoKENZe6RIZQeQnDd+Ef\nvdpmgS7d0fUZUYkro7O4NyvFCdJdCCaTAWPvE7uHv5Dr1GnLOF4LlV7XvuQIgGJP\nITldIcZNxYYO9GOECohbcEqMjcf1lH8DYurlTpbL2/uA6wphBOEDR9fxAFx9Brz0\nbsY9SkuviVkJt0bDc+9gSFMb1t7eEP5pHU2WHk0/MyrH30dUANeod86oxq63V+1m\n0JdwqPgTuIMz7N39k0B8O9H+Q+St8/1bBeJC0zDhyPP9jsZklXTykeSueDS9gZD5\nBK1H68vdAgMBAAECggEACs/RxwH4k9TaGi/z3r39Zx79+1W7dZO6VeK4swlBRgf+\npUCiV03JWMgVkZho1IyHtk3UZByfuc5TxY3CiGtpVwY/z2MllIZ/MzZoWiy2JrVB\n4rz7lqAnJdTKohDaaz2rqdff3FYwZRLZ4adz30upNWOLUIoik/Ob5594cH4VGCBZ\nd4vszCWHAe/MUpIJOxPG7LZWwSwMFDXK82P2GOk0eW7gAQG1pxbCeO4vol7oV4BY\nyctoHfd9FLJuYkrVdphcuis3nLA/LzXoO5kvM1BQpu7l0IelZX7nQtEdQGpXa9uJ\nG/DvQJblTABMJjntgYl47/vFExSC8a34U/c24ONsEQKBgQD8UDN5Vw03CTAYfXP3\n4RHTfWb9CTtIRmJGbLFyIWoLMJByWI2YfHZUBZVhwKzQ0Fkkzl07ysvrWsSVqY+4\nGZUXSoc4apaXqvj1yYCFNaHQVrfG8UQekf+htvtjGrvY2sseMREm7jyDwOxlEOGN\nQKh7SBRi0hxl6xc6f+0XAmE3jQKBgQC2X0HMoTlRHmVdztLwEvfipZcH7g4Lci9M\n4Bi2DXNPrXlQVf6Tvv1gJh04AegT+BSvW2j2mQ579vBs4ltUXUy83RMnnixgAvF5\n5+89+TA15TglVUL/G0p92QSTTrsgfW+VQgkAkOcwHp7SolClhcU7xGjdAkBIUBMy\nwS8Vd3zpkQKBgQC2qv3JMFvx52X5pQHLiRfVzKk+MmvH9KT7pX+GSGi0tzEsh63j\nouAsDmrK/apf9ydCvWDEhBrERs+iJsNVHrhQx3VEQ+7I2VAq6fpw9pYy9kVQ86VE\nmKDBHG+9nUI4SpbZQd7QF5SaMpcyyFjzYcdYkaOos8M5ik0j3i/xA5kMlQKBgAiD\n4hqf3IFBHhKHOaoj+JcIjEi+gMFgD31TaVP2xM+Plf5+RWi4njQDE5It5JwqFS0q\n43fAJcD8ArXSy9jgklivKdnLtN62xHegsLcAD5Q0o656kKpAp/XAUEpgfrRBpxgd\nATaZjXHdvCSxl3pjCJaF0S+gj0fRFVRlWMFz1s1BAoGAXdReMybGWryu9trvG7Mp\nIz7FC5OA4RTpMxvdxWTh2YqIY71Ieo75Td/8O+B1sW2JBFeoRwaYo4pB/VTtyAGt\nLGnxp5+ktONm4teMUw3PTK8iBX0FzbIA6SiBk6mzN81eYOw9ewioyweBc8Rn3laI\nx2PAg0NH6X4WH5gkirxwT3s=\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-48da9@plinkogame-3471c.iam.gserviceaccount.com",
+  "client_id": "109089840723489770609",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-48da9%40plinkogame-3471c.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
