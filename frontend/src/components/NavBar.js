@@ -45,7 +45,7 @@ const NavBar = ({ balance, setBalance, userInfo }) => {
     const token = await user.getIdToken(true);
     // console.log(token);
     const response = await axios.post(
-      "http://localhost:3000/api/addBalance",
+      "https://plinko-game-d46h.onrender.com/api/addBalance",
       { amount: value },
       {
         headers: {

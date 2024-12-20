@@ -185,7 +185,6 @@ function App() {
           backgroundColor: "#16A34A",
         },
       }}
-      disabled={balance <= 0}
       onClick={handleDropClick}
     >
       Drop Ball
