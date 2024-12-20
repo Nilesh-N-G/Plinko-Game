@@ -204,7 +204,10 @@ function App() {
         onClose={closeModal}
         aria-labelledby="insufficient-funds-title"
         aria-describedby="insufficient-funds-description"
-        sx={{paddingX:3}}
+        sx={{ paddingX: 3,      
+          marginX: { xs: 2, sm: 0 }, 
+          marginY: { xs: 4, sm: 0 }, 
+           }}
       >
         <Box
           sx={{
@@ -212,12 +215,13 @@ function App() {
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
-            width: 400,
+            width: { xs: "90%", sm: 400 },  // Make width responsive
             bgcolor: "background.paper",
             boxShadow: 24,
             p: 4,
             borderRadius: 3,
             textAlign: "center",
+            
           }}
         >
           <Box
