@@ -18,6 +18,7 @@ const GameBoard = ({
   patterns,
   totalballs,
   setTotalBalls,
+  setShowModal,
 }) => {
   return (
     <><Box sx={{
@@ -69,6 +70,7 @@ const GameBoard = ({
                 setSinkPattern={setSinkPattern}
                 patterns={patterns}
                 balls={balls}
+                setShowModal={setShowModal}
               />
             </Box>
           </Grid>

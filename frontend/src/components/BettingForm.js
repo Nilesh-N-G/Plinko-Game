@@ -12,7 +12,7 @@ import Divider from '@mui/material/Divider';
 
 import '../App.css'
 
-const BettingForm = ({button,risk,setRisk,betAmount,setBetAmount,balance ,setSinkPattern,patterns,balls}) => {
+const BettingForm = ({button,risk,setRisk,betAmount,setBetAmount,balance ,setSinkPattern,patterns,balls,setShowModal}) => {
   const [ballsLength, setBallsLength] = useState(balls.current.length); // Track the length of balls.current
 
   // Effect to monitor changes to balls.current.length
@@ -86,7 +86,8 @@ const BettingForm = ({button,risk,setRisk,betAmount,setBetAmount,balance ,setSin
         variant="contained"
         onClick={()=>{
           if(betAmount * 0.5> balance || betAmount<0){
-            alert('Invalid Bet Amount or Insufficient Balance');
+            // alert('Invalid Bet Amount or Insufficient Balance');
+            setShowModal(true);
           }
           else{
             setBetAmount(prev => prev * 0.5);
@@ -116,7 +117,8 @@ const BettingForm = ({button,risk,setRisk,betAmount,setBetAmount,balance ,setSin
         variant="contained"
         onClick={()=>{
           if(betAmount * 2> balance){
-            alert('Invalid Bet Amount or Insufficient Balance');
+            // alert('Invalid Bet Amount or Insufficient Balance');
+            setShowModal(true);
             return false;
           }
           else{

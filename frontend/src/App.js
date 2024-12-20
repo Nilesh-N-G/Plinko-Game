@@ -62,7 +62,7 @@ function App() {
           const token = await user.getIdToken(true);
           // console.log(token);
           const response = await axios.post(
-            "http://localhost:3000/api/balance",
+            "https://plinko-game-d46h.onrender.com/api/balance",
             {},
             {
               headers: {
@@ -110,7 +110,7 @@ function App() {
       setBalance((prevBalance) => Math.max(prevBalance - betAmount, 0));
       // Make a request to the backend to send x and multiplier
       const response = await axios.post(
-        "http://localhost:3000/api/getBallPosition",
+        "https://plinko-game-d46h.onrender.com/api/getBallPosition",
         payload,
         {
           headers: {
@@ -297,6 +297,7 @@ function App() {
                       patterns={patterns}
                       totalballs={totalballs}
                       setTotalBalls={setTotalBalls}
+                      setShowModal={setShowModal}
                     />{" "}
                     <Footer />
                   </Box>

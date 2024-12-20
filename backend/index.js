@@ -63,15 +63,16 @@ app.use('/api', verifyToken, ballanceRoutes);
 
 
 
-// Health Check Route
-app.get("/health", (req, res) => {
-  console.log("Health check passed.");
-  res.status(200).send("OK");
+// Health check endpoint
+app.get('/health', (req, res) => {
+  console.log(`Health check from IP: ${req.ip}, User-Agent: ${req.get('User-Agent')}`);
+  res.status(200).send('OK');
 });
+
 
 // ================= Start Server ================= //
 // const PORT = process.env.PORT || 4000;
-const PORT = 3000;
+const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
