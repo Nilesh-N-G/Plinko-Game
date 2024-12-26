@@ -6,15 +6,14 @@ import { getAuth } from 'firebase/auth';
 
 // Your Firebase config
 const firebaseConfig = {
-    apiKey: "AIzaSyCsb7zLUXOKcsPTfeJXJ7hvj0nAWBWu2qc",
-    authDomain: "plinkogame-3471c.firebaseapp.com",
-    projectId: "plinkogame-3471c",
-    storageBucket: "plinkogame-3471c.firebasestorage.app",
-    messagingSenderId: "319703684209",
-    appId: "1:319703684209:web:1384d69779401d665837d0",
-    measurementId: "G-Y8NMFZY27N"
+    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+    authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+    projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.REACT_APP_FIREBASE_APP_ID,
+    measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID
 };
-
 
 
 // Initialize Firebase
