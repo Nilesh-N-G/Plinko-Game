@@ -42,7 +42,6 @@ router.post("/", async (req, res) => {
       return res.status(400).json({ error: "Missing required parameters." });
     if (!["low", "medium", "high"].includes(risk))
       return res.status(400).json({ error: "Invalid risk level." });
-
     // Calculate result
     const result = calculateReturn(betAmount, risk);
     const sinkPositions = sinks[result.sinkNumber];
