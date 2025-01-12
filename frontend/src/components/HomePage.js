@@ -100,13 +100,13 @@ const Homepage = () => {
   
       try {
 
-        const status = await axios.get("https://plinko-game-d46h.onrender.com/health",{});
+        const status = await axios.get("https://plinko-game-lurq.onrender.com/health",{});
         // console.log('Health check successful',status.status);
         if(status.status === 200) {
           await signInWithPopup(auth, provider);
           const token = await auth.currentUser.getIdToken(true);
           // console.log(token);
-          const response = await axios.post("https://plinko-game-d46h.onrender.com/login",{}, {
+          const response = await axios.post("https://plinko-game-lurq.onrender.com/login",{}, {
             headers: {
               Authorization: `Bearer ${token}`, // Set the Authorization header
             },
